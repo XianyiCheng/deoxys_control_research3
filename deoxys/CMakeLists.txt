@@ -52,6 +52,13 @@ message("FRANKA ${BUILD_FRANKA}")
 message("DEOXYS ${BUILD_DEOXYS}")
 
 if (BUILD_FRANKA)
+
+  set(ENV{PATH} "/opt/openrobots/bin:$ENV{PATH}")
+  set(ENV{PKG_CONFIG_PATH} "/opt/openrobots/lib/pkgconfig:$ENV{PKG_CONFIG_PATH}")
+  set(ENV{LD_LIBRARY_PATH} "/opt/openrobots/lib:$ENV{LD_LIBRARY_PATH}")
+  set(ENV{PYTHONPATH} "/opt/openrobots/lib/python3.10/site-packages:$ENV{PYTHONPATH}")
+  set(ENV{CMAKE_PREFIX_PATH} "/opt/openrobots:$ENV{CMAKE_PREFIX_PATH}")
+
   message("${PROTO_NAMESPACE}")  
   add_proto_cc_library(shared_protobuf
     NAMESPACE ${PROTO_NAMESPACE}
@@ -60,6 +67,7 @@ if (BUILD_FRANKA)
   set(BUILD_TESTS OFF CACHE BOOL "Turn off libfranka tests")
   set(BUILD_EXAMPLES ON CACHE BOOL "Turn on libfranka examples")
   find_package(Eigen3 REQUIRED)
+  find_package(console_bridge REQUIRED)
 
   set(THREADS_PREFER_PTHREAD_FLAG ON)
   find_package(Threads REQUIRED)
