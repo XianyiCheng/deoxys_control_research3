@@ -58,7 +58,7 @@ if (BUILD_FRANKA)
     PROTO_FILES ${FRANKA_PROTO_FILES}
     PROTO_LIB protobuf)
   set(BUILD_TESTS OFF CACHE BOOL "Turn off libfranka tests")
-  set(BUILD_EXAMPLES OFF CACHE BOOL "Turn off libfranka examples")
+  set(BUILD_EXAMPLES ON CACHE BOOL "Turn on libfranka examples")
   find_package(Eigen3 REQUIRED)
 
   set(THREADS_PREFER_PTHREAD_FLAG ON)
