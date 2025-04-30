@@ -35,7 +35,7 @@ def parse_args():
     parser.add_argument(
         "--product_id",
         type=int,
-        default=50734,
+        default=50741,
     )
     parser.add_argument(
         "--dataset",

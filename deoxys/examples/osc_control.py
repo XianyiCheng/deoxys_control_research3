@@ -155,7 +155,7 @@ def main():
         controller_cfg,
         target_delta_pose=[0.2, 0.0, 0.0, 0.0, 0.5, 0.2],
         num_steps=80,
-        num_additional_steps=40,
+        num_additional_steps=100,
         interpolation_method="linear",
     )
 

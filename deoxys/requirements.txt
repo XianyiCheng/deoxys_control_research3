@@ -9,5 +9,8 @@ glfw
 numba
 termcolor
 simplejson
+scipy
+matplotlib
+h5py
 mujoco==3.1.0
 

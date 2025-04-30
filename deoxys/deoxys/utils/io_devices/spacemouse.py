@@ -110,7 +110,7 @@ class SpaceMouse:
     """
 
     def __init__(
-        self, vendor_id=9583, product_id=50735, pos_sensitivity=1.0, rot_sensitivity=1.0
+        self, vendor_id=9583, product_id=50741, pos_sensitivity=1.0, rot_sensitivity=1.0
     ):
 
         print("Opening SpaceMouse device")
@@ -217,6 +217,8 @@ class SpaceMouse:
 
         while True:
             d = self.device.read(13)
+            # print(len(d))
+            # print(d)
             if d is not None and self._enabled:
 
                 if d[0] == 1:  ## readings from 6-DoF sensor
@@ -224,9 +226,9 @@ class SpaceMouse:
                     self.x = convert(d[3], d[4])
                     self.z = convert(d[5], d[6]) * -1.0
 
-                    self.roll = convert(d[7], d[8])
-                    self.pitch = convert(d[9], d[10])
-                    self.yaw = convert(d[11], d[12])
+                    # self.roll = convert(d[7], d[8])
+                    # self.pitch = convert(d[9], d[10])
+                    # self.yaw = convert(d[11], d[12])
 
                     self._control = [
                         self.x,
