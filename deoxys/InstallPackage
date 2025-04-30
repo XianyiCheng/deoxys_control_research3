@@ -70,3 +70,29 @@ echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/robotpkg.asc] http://robotpkg.
 
 sudo apt update
 sudo apt install -qqy robotpkg-py3*-pinocchio
+
+# Setup the environment block for pinnochio dependency issues
+MARKER="# >>> openrobots environment block >>>"
+BASHRC="$HOME/.bashrc"
+
+# Check if the block is already present
+if grep -Fxq "$MARKER" "$BASHRC"; then
+  echo "Environment block already exists in $BASHRC. Skipping."
+else
+  echo "Appending openrobots environment block to $BASHRC..."
+
+  cat << 'EOF' >> "$BASHRC"
+
+# >>> openrobots environment block >>>
+export PATH=/opt/openrobots/bin:$PATH
+export PKG_CONFIG_PATH=/opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
+export LD_LIBRARY_PATH=/opt/openrobots/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=/opt/openrobots/lib/python3.10/site-packages:$PYTHONPATH # Adapt your desired python version here
+export CMAKE_PREFIX_PATH=/opt/openrobots:$CMAKE_PREFIX_PATH
+
+export LD_LIBRARY_PATH=/home/labuser/franka_workspace/deoxys_control/deoxys:$LD_LIBRARY_PATH
+# <<< openrobots environment block <<<
+EOF
+
+  echo "Done. Please run 'source ~/.bashrc' or restart your terminal session to apply the changes."
+fi
